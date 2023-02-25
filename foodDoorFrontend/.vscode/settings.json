@@ -1,0 +1,16 @@
+{
+	"buck.projectConfig": {
+		"projectPath": "d:\\Documents\\Projects\\Work\\Brotcamp\\ReactNative\\my-project\\.buckconfig",
+		"flavor": [],
+		"target": "",
+		"platform": "linux-x86_64"
+	},
+	"cSpell.words": [
+		"Entypo",
+		"Ionicons",
+		"Mapbox",
+		"razorpay",
+		"Reactotron",
+		"rnmapbox"
+	]
+}
