@@ -67,7 +67,6 @@ const RestaurantScreen = ({
 	const [restaurant, setRestaurant] = useState(null)
 	const [selectedCategory, setSelectedCategory] = useState(null)
 
-
 	useEffect(() => {
 		RestaurantService.getOneRestaurantById(restaurantId).then(response => {
 			setSelectedCategory(response?.data?.categories[0])
@@ -88,7 +87,6 @@ const RestaurantScreen = ({
 		dispatch(BookmarkAction.addBookmark({ restaurantId }))
 	const removeBookmark = () =>
 		dispatch(BookmarkAction.removeBookmark({ restaurantId }))
-
 
 	return (
 		<View style={styles.container}>
@@ -195,7 +193,6 @@ const RestaurantScreen = ({
 							/>
 						</View>
 
-
 						<View style={styles.foodList}>
 							{restaurant?.foods
 								?.filter(
@@ -214,10 +211,6 @@ const RestaurantScreen = ({
 								))}
 							<Separator height={Display.setHeight(2)} />
 						</View>
-
-
-
-						
 					</View>
 				</ScrollView>
 			</>

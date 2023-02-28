@@ -11,6 +11,7 @@ module.exports = {
 			FOODS: 'foods',
 			BOOKMARKS: 'bookmarks',
 			ORDERS: 'orders',
+			CODES:'codes'
 		},
 	},
 	serverConfig: {

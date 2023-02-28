@@ -74,7 +74,6 @@ const CheckOutScreen = ({
 	const [buttonEnabled, setButtonEnabled] = useState(false)
 	const [selectedCategory, setSelectedCategory] = useState(null)
 
-
 	const isOrder = useSelector(
 		state =>
 			state?.orderState?.orders?.filter(item => item?.foodId === foodId)
@@ -95,11 +94,19 @@ const CheckOutScreen = ({
 		isOrder ? removeOrder() : addOrder()
 	}
 	const promoCodes = {
-		blackFriday: 'BF2020',
+		blackFriday: { id: 'BF2020', discount: '50' },
 		cyberMonday: 'CM2020',
 		summerSale: 'SS2020',
 		backToSchool: 'BTS2020',
 	}
+	// const [promoCodes, setPromoCodes] = useState(null)
+
+	// useEffect(() => {
+	// 	RestaurantService.getOneRestaurantById(restaurantId).then(response => {
+	// 		setSelectedCategory(response?.data?.categories[0])
+	// setPromoCodes(response?.data)
+	// 	})
+	// }, [])
 
 	return (
 		<View style={styles.container}>
@@ -142,10 +149,9 @@ const CheckOutScreen = ({
 						/>
 					))}
 				</View>
-				
 
 				<View
-					// onPress={() => navigation.navigate('PromoCode')}
+				// onPress={() => navigation.navigate('PromoCode')}
 				>
 					<View style={styles.promoCodeContainer}>
 						<View style={styles.rowAndCenter}>
@@ -164,7 +170,7 @@ const CheckOutScreen = ({
 							color={Colors.DEFAULT_BLACK}
 						/> */}
 					</View>
-				{/*//!-------------------------------------Beta-----------------------------------| */}
+					{/*//!-------------------------------------Beta-----------------------------------| */}
 					<View style={styles.categoriesContainer}>
 						<FlatList
 							data={Object.keys(promoCodes)}
@@ -318,8 +324,7 @@ const styles = StyleSheet.create({
 		lineHeight: 15 * 1.4,
 		color: Colors.DEFAULT_BLACK,
 		marginLeft: 100,
-		textAlign: "center",
-		
+		textAlign: 'center',
 	},
 	rowAndCenter: {
 		flexDirection: 'row',
@@ -477,8 +482,6 @@ const styles = StyleSheet.create({
 		marginVertical: 4,
 		// borderBottomWidth: 0.5,
 		// marginHorizontal: Display.setWidth(4),
-
-
 	},
 })
 

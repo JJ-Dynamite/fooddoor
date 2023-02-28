@@ -9,6 +9,7 @@ import BookmarkService from './BookmarkService'
 import CheckOutService from './CheckOutService'
 import OrderService from './OrderService'
 import PaymentService from './PaymentService'
+import PromoCodeService from './PromoCodeService'
 
 export {
 	StaticImageService,
@@ -21,5 +22,6 @@ export {
 	BookmarkService,
 	CheckOutService,
 	OrderService,
-	PaymentService
+	PaymentService,
+	PromoCodeService,
 }

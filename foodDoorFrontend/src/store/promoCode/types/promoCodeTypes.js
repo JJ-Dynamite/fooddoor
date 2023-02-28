@@ -1,0 +1,9 @@
+const types = {
+    GET_PROMO_CODES: 'GET_PROMO_CODES',
+    ADD_PROMO_CODE: 'ADD_PROMO_CODE',
+    REMOVE_PROMO_CODE: 'REMOVE_PROMO_CODE',
+    SET_IS_LOADING: 'SET_IS_LOADING',
+  }
+  
+  export { types }
+  

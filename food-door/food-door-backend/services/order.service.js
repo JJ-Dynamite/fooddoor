@@ -3,20 +3,15 @@ const MongoDB = require('./mongodb.service')
 
 const addOrder = async ({ foodId, username }) => {
 	try {
-		// console.log(foodId)
 		const foodIds = foodId.replace(/"/g, '').split(',').map(Number);
-		// console.log(foodIds)
 		const result = foodIds.map(id => {
 			return { foodId: id.toString(), username: username };
 		});
 		
 		let insertOrder = await MongoDB.db
 		.collection(mongoConfig.collections.ORDERS)
-		// .insertOne({ foodId, username })
 		.insertMany(result)
-		// console.log(result)
 
-		// console.log(insertOrder,{ foodId, username })
 		if (insertOrder) {
 			let orderResponse = await getOrders({ username })
 		console.log(orderResponse)
