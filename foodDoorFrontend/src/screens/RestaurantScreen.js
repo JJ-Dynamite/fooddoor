@@ -194,6 +194,8 @@ const RestaurantScreen = ({
 								)}
 							/>
 						</View>
+
+
 						<View style={styles.foodList}>
 							{restaurant?.foods
 								?.filter(
@@ -212,6 +214,10 @@ const RestaurantScreen = ({
 								))}
 							<Separator height={Display.setHeight(2)} />
 						</View>
+
+
+
+						
 					</View>
 				</ScrollView>
 			</>

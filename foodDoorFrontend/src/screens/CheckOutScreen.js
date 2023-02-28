@@ -9,7 +9,7 @@ import {
 	Image,
 } from 'react-native'
 import { Colors, Fonts, Images } from '../constants'
-import { FoodCard, Separator, PopeUp } from '../components'
+import { FoodCard, Separator, PopeUp, CategoryListItem } from '../components'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -20,6 +20,46 @@ import { CheckOutService, OrderService } from '../services'
 import { OrderAction } from '../store/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import reactotron from 'reactotron-react-native'
+import { FlatList } from 'react-native-gesture-handler'
+
+const ListHeader = () => (
+	<View
+		style={{
+			flexDirection: 'row',
+			flex: 1,
+			width: 40,
+			justifyContent: 'flex-end',
+		}}
+	>
+		<View
+			style={{
+				backgroundColor: Colors.LIGHT_YELLOW,
+				width: 20,
+				borderTopLeftRadius: 64,
+				borderBottomLeftRadius: 64,
+			}}
+		/>
+	</View>
+)
+
+const ListFooter = () => (
+	<View
+		style={{
+			flexDirection: 'row',
+			flex: 1,
+			width: 40,
+		}}
+	>
+		<View
+			style={{
+				backgroundColor: Colors.LIGHT_YELLOW,
+				width: 20,
+				borderTopRightRadius: 64,
+				borderBottomRightRadius: 64,
+			}}
+		/>
+	</View>
+)
 
 const CheckOutScreen = ({
 	navigation,
@@ -32,6 +72,8 @@ const CheckOutScreen = ({
 	const dispatch = useDispatch()
 
 	const [buttonEnabled, setButtonEnabled] = useState(false)
+	const [selectedCategory, setSelectedCategory] = useState(null)
+
 
 	const isOrder = useSelector(
 		state =>
@@ -51,6 +93,12 @@ const CheckOutScreen = ({
 
 	const setOrder = () => {
 		isOrder ? removeOrder() : addOrder()
+	}
+	const promoCodes = {
+		blackFriday: 'BF2020',
+		cyberMonday: 'CM2020',
+		summerSale: 'SS2020',
+		backToSchool: 'BTS2020',
 	}
 
 	return (
@@ -94,6 +142,49 @@ const CheckOutScreen = ({
 						/>
 					))}
 				</View>
+				
+
+				<View
+					// onPress={() => navigation.navigate('PromoCode')}
+				>
+					<View style={styles.promoCodeContainer}>
+						<View style={styles.rowAndCenter}>
+							<Entypo
+								name="ticket"
+								size={30}
+								color={Colors.DEFAULT_YELLOW}
+							/>
+							<Text style={styles.promoCodeText}>
+								Add Promo Code
+							</Text>
+						</View>
+						{/* <Ionicons
+							name="chevron-forward-outline"
+							size={20}
+							color={Colors.DEFAULT_BLACK}
+						/> */}
+					</View>
+				{/*//!-------------------------------------Beta-----------------------------------| */}
+					<View style={styles.categoriesContainer}>
+						<FlatList
+							data={Object.keys(promoCodes)}
+							keyExtractor={item => item}
+							horizontal
+							ListHeaderComponent={() => <ListHeader />}
+							ListFooterComponent={() => <ListFooter />}
+							showsHorizontalScrollIndicator={false}
+							renderItem={({ item }) => (
+								<CategoryListItem
+									name={item}
+									isActive={item === selectedCategory}
+									selectCategory={category =>
+										setSelectedCategory(category)
+									}
+								/>
+							)}
+						/>
+					</View>
+				</View>
 				<View style={styles.paymentContainer}>
 					<TouchableOpacity
 						style={styles.paymentButton}
@@ -122,27 +213,6 @@ const CheckOutScreen = ({
 						/>
 					</TouchableOpacity>
 				</View>
-				<TouchableOpacity
-					onPress={() => navigation.navigate('PromoCode')}
-				>
-					<View style={styles.promoCodeContainer}>
-						<View style={styles.rowAndCenter}>
-							<Entypo
-								name="ticket"
-								size={30}
-								color={Colors.DEFAULT_YELLOW}
-							/>
-							<Text style={styles.promoCodeText}>
-								Add Promo Code
-							</Text>
-						</View>
-						<Ionicons
-							name="chevron-forward-outline"
-							size={20}
-							color={Colors.DEFAULT_BLACK}
-						/>
-					</View>
-				</TouchableOpacity>
 				<View style={styles.amountContainer}>
 					<View style={styles.amountSubContainer}>
 						<Text style={styles.amountLabelText}>Item Total</Text>
@@ -186,7 +256,9 @@ const CheckOutScreen = ({
 					]}
 					disabled={!buttonEnabled}
 					//setOrder()as prop
-					onPress={() => navigation.navigate('Payment',{ setOrder: setOrder })}
+					onPress={() =>
+						navigation.navigate('Payment', { setOrder: setOrder })
+					}
 				>
 					<View style={styles.rowAndCenter}>
 						<Text style={styles.paymentText}>Confirm order</Text>
@@ -227,7 +299,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 15,
 		marginTop: 10,
 		borderTopWidth: 0.5,
-		borderBottomWidth: 0.5,
+		// borderBottomWidth: 0.5,
 		justifyContent: 'space-between',
 	},
 	paymentContainer: {
@@ -245,7 +317,9 @@ const styles = StyleSheet.create({
 		fontFamily: Fonts.POPPINS_MEDIUM,
 		lineHeight: 15 * 1.4,
 		color: Colors.DEFAULT_BLACK,
-		marginLeft: 10,
+		marginLeft: 100,
+		textAlign: "center",
+		
 	},
 	rowAndCenter: {
 		flexDirection: 'row',
@@ -398,6 +472,13 @@ const styles = StyleSheet.create({
 		height: 40,
 		// borderRadius: 10,
 		// margin: 5,
+	},
+	categoriesContainer: {
+		marginVertical: 4,
+		// borderBottomWidth: 0.5,
+		// marginHorizontal: Display.setWidth(4),
+
+
 	},
 })
 
