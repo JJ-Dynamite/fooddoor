@@ -58,7 +58,7 @@ const AccountScreen = ({ navigation }) => {
 			</View>
 			<View style={styles.profileHeaderContainer}>
 				<View style={styles.profileImageContainer}>
-					<Image style={styles.profileImage} source={Images.AVATAR} />
+					{/* <Image style={styles.profileImage} source={Images.AVATAR} /> */}
 				</View>
 				<View style={styles.profileTextContainer}>
 					<Text style={styles.nameText}>Joel</Text>

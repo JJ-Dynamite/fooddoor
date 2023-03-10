@@ -4,7 +4,7 @@ import Reactotron, { trackGlobalErrors } from 'reactotron-react-native'
 import App from './App'
 
 Reactotron.configure({
-	name: 'my-project',
+	name: 'Food Hub',
 	host: '192.168.1.98',
 })
 	.use(trackGlobalErrors())

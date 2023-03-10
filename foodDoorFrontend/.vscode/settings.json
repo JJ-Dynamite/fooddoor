@@ -12,5 +12,6 @@
 		"razorpay",
 		"Reactotron",
 		"rnmapbox"
-	]
+	],
+	"java.configuration.updateBuildConfiguration": "automatic"
 }

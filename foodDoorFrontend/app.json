@@ -1,11 +1,17 @@
 {
   "expo": {
-    "name": "my-project",
-    "slug": "my-project",
+    "name": "Food Hub",
+    "slug": "Food Hub",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "versionCode": 1
+    },
+    "ios": {
+      "buildNumber": "1"
+    }
   },
-  "name": "my-project"
+  "name": "Food Hub"
 }

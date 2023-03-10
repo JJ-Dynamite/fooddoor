@@ -71,7 +71,7 @@ const RestaurantScreen = ({
 		RestaurantService.getOneRestaurantById(restaurantId).then(response => {
 			setSelectedCategory(response?.data?.categories[0])
 			setRestaurant(response?.data)
-		})
+		}) 
 	}, [])
 
 	const dispatch = useDispatch()

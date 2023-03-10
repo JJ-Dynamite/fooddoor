@@ -17,7 +17,7 @@ const SplashScreen = ({ navigation }) => {
 				resizeMode="contain"
 				style={styles.image}
 			/>
-			<Text style={styles.titleText}>Food Door</Text>
+			<Text style={styles.titleText}>Food Hub</Text>
 		</View>
 	)
 }
