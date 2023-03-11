@@ -93,20 +93,25 @@ const CartScreen = ({ navigation }) => {
 								$ {cart?.metaData?.grandTotal?.toFixed(2)}
 							</Text>
 						</View>
-							{reactotron.log(
-								`cartScreen|foodId: ${JSON.stringify(cart.cartItems.map(obj => obj.foodId).join(','))}`
-							)}
+						{reactotron.log(
+							`cartScreen|foodId: ${JSON.stringify(
+								cart.cartItems.map(obj => obj.foodId).join(',')
+							)}`
+						)}
 						<TouchableOpacity
 							style={styles.checkoutButton}
 							//!-------------------------------------Testing-----------------------------------|
 
 							onPress={() =>
 								navigation.navigate('CheckOut', {
-									foodId: JSON.stringify(cart.cartItems.map(obj => obj.foodId).join(',')),
+									foodId: JSON.stringify(
+										cart.cartItems
+											.map(obj => obj.foodId)
+											.join(',')
+									),
 								})
 							}
 						>
-
 							<View style={styles.rowAndCenter}>
 								<Ionicons
 									name="cart-outline"
@@ -135,7 +140,10 @@ const CartScreen = ({ navigation }) => {
 					<Text style={styles.emptyCartSubText}>
 						Go ahead and order some tasty food
 					</Text>
-					<TouchableOpacity style={styles.addButtonEmpty}>
+					<TouchableOpacity
+						style={styles.addButtonEmpty}
+						onPress={() => navigation.navigate('Home')}
+					>
 						<AntDesign
 							name="plus"
 							color={Colors.DEFAULT_WHITE}
